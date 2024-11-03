@@ -1,15 +1,13 @@
 from player_reader import PlayerReader
 
-
-
 class StatisticsService:
-    def __init__(self):
-        reader = PlayerReader()
+    def __init__(self, player_reader: PlayerReader):
+        self.__reader = player_reader
 
-        self._players = reader.get_players()
+        self.__players = self.__reader.get_players()
 
     def search(self, name):
-        for player in self._players:
+        for player in self.__players:
             if name in player.name:
                 return player
 
@@ -18,7 +16,7 @@ class StatisticsService:
     def team(self, team_name):
         players_of_team = filter(
             lambda player: player.team == team_name,
-            self._players
+            self.__players
         )
 
         return list(players_of_team)
@@ -29,7 +27,7 @@ class StatisticsService:
             return player.points
 
         sorted_players = sorted(
-            self._players,
+            self.__players,
             reverse=True,
             key=sort_by_points
         )
