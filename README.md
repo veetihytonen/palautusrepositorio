@@ -2,4 +2,4 @@
 
 Ohtuvarasto: https://github.com/veetihytonen/ohtuvarasto
 
-Webcounter: https://github.com/veetihytonen/webcounter
+Webcounter: https://github.com/veetihytonen/web-counter
