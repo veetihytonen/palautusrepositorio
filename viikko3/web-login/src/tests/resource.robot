@@ -8,8 +8,8 @@ ${DELAY}         0.5 seconds
 ${HOME_URL}      http://${SERVER}
 ${LOGIN_URL}     http://${SERVER}/login
 ${REGISTER_URL}  http://${SERVER}/register
-${BROWSER}       chrome
-${HEADLESS}      false
+${BROWSER}       firefox
+${HEADLESS}      true
 
 *** Keywords ***
 Open And Configure Browser
@@ -32,11 +32,42 @@ Login Page Should Be Open
 Main Page Should Be Open
     Title Should Be  Ohtu Application main page
 
+Welcome to Ohtu Page Should Be Open
+    Title Should Be  Welcome to Ohtu Application!
+
 Register Page Should Be Open
     Title Should Be  Register
 
 Go To Login Page
     Go To  ${LOGIN_URL}
 
+Go To Register Page
+    Go To  ${REGISTER_URL}
+
 Go To Starting Page
     Go To  ${HOME_URL}
+
+Reset Application And Go To Starting Page
+  Reset Application
+  Go To Starting Page
+
+Reset Application And Go To Register Page
+  Reset Application
+  Go To Starting Page
+
+Set Username
+    [Arguments]  ${username}
+    Input Text  username  ${username}
+
+Set Password
+    [Arguments]  ${password}
+    Input Password  password  ${password}
+
+Set Confirm Password
+    [Arguments]  ${password}
+    Input Password  password_confirmation  ${password}
+
+Reset Application Create User And Go To Login Page
+    Reset Application
+    Create User  kalle  kalle123
+    Go To Login Page
