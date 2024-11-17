@@ -6,6 +6,7 @@ Library  ../AppLibrary.py
 ${SERVER}        localhost:5001
 ${DELAY}         0.5 seconds
 ${HOME_URL}      http://${SERVER}
+${MAIN_PAGE}     http://${SERVER}/ohtu
 ${LOGIN_URL}     http://${SERVER}/login
 ${REGISTER_URL}  http://${SERVER}/register
 ${BROWSER}       firefox
@@ -47,6 +48,9 @@ Go To Register Page
 Go To Starting Page
     Go To  ${HOME_URL}
 
+Go To Main Page
+    Go To  ${MAIN_PAGE}
+
 Reset Application And Go To Starting Page
   Reset Application
   Go To Starting Page
@@ -71,3 +75,14 @@ Reset Application Create User And Go To Login Page
     Reset Application
     Create User  kalle  kalle123
     Go To Login Page
+
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
+
+Submit Credentials
+    Click Button  Login

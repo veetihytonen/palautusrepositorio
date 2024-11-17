@@ -54,6 +54,24 @@ Register With Username That Is Already In Use
     Register
     Register Should Fail With Message    Username already taken
 
+Login After Successful Registration
+    Go To Main Page
+    Click Button    Logout
+    Login Page Should Be Open
+    Set Username    kalle
+    Set Password    kalle123
+    Submit Credentials
+    Login Should Succeed
+
+Login After Failed Registration
+    Go To Register Page
+    Register
+    Go To Login Page
+    Set Username  kalle
+    Set Password  kalle123
+    Submit Credentials
+    Login Should Succeed
+
 *** Keywords ***
 Register Should Succeed
     Welcome to Ohtu Page Should Be Open
